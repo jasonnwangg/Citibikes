@@ -161,7 +161,7 @@ probabilityTable <- rbind(probabilityTable,c( sum(probabilityTable[,"Subscriber"
 
 probabilityTable
 
-### Histogram ###
+#Histogram
 
 bin_width <- 2 * IQR(citibikeDemand$Demand) / length(citibikeDemand$Demand)^(1/3)
 ggplot(citibikeDemand, aes(x = Demand)) + 
@@ -169,13 +169,13 @@ geom_histogram(binwidth = bin_width) +
 geom_histogram( colour = "white", fill = "dodgerblue") +
 ggtitle("Distribution of Demand")
 
-### Bar Plot ###
+#Bar Plot
 
 ggplot(citibikeDemand, aes(x = Demand, y = TripDurationMinutes)) + 
 geom_bar(stat = "identity", fill="dodgerblue", color="dodgerblue") +
-ggtitle("Trip Duration per Demand Levels ")
+ggtitle("Trip Duration per Demand Levels")
 
-### Scatterplots ###
+#Scatterplots
 
 ggplot(citibikeDemand, mapping = aes(x = Demand, y = StartPerCapitaIncome )) + 
 geom_point() +
@@ -189,7 +189,7 @@ geom_point( colour = "dodgerblue") +
 ggtitle("Distance Traveled per Demand Levels") +
 ylab("Distance in Miles") + xlab("Demand") 
 
-### Linear Regression ###
+#Linear Regression
 
 citireg <- lm(Demand ~ StartStationId + EndStationId + DemandTime + StartPerCapitaIncome + StartPctHouseholdsNoVehicle + TripDurationMinutes + DistanceMiles, data = citibikeDemand)
 
