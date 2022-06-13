@@ -161,7 +161,7 @@ probabilityTable <- rbind(probabilityTable,c( sum(probabilityTable[,"Subscriber"
 
 probabilityTable
 
-#Histogram
+### Histogram ###
 
 bin_width <- 2 * IQR(citibikeDemand$Demand) / length(citibikeDemand$Demand)^(1/3)
 ggplot(citibikeDemand, aes(x = Demand)) + 
@@ -169,13 +169,13 @@ geom_histogram(binwidth = bin_width) +
 geom_histogram( colour = "white", fill = "dodgerblue") +
 ggtitle("Distribution of Demand")
 
-#Bar Plot
+### Bar Plot ###
 
 ggplot(citibikeDemand, aes(x = Demand, y = TripDurationMinutes)) + 
 geom_bar(stat = "identity", fill="dodgerblue", color="dodgerblue") +
 ggtitle("Trip Duration per Demand Levels ")
 
-#Scatterplots
+### Scatterplots ###
 
 ggplot(citibikeDemand, mapping = aes(x = Demand, y = StartPerCapitaIncome )) + 
 geom_point() +
@@ -189,7 +189,7 @@ geom_point( colour = "dodgerblue") +
 ggtitle("Distance Traveled per Demand Levels") +
 ylab("Distance in Miles") + xlab("Demand") 
 
-#Linear Regression
+### Linear Regression ###
 
 citireg <- lm(Demand ~ StartStationId + EndStationId + DemandTime + StartPerCapitaIncome + StartPctHouseholdsNoVehicle + TripDurationMinutes + DistanceMiles, data = citibikeDemand)
 
@@ -199,7 +199,7 @@ summary(citireg)
 
 #Predict DayTime and Evening for 5 stations
 
-#Murray Hill Predictions
+### Murray Hill Predictions ###
 
 murray_predict1 <- data.frame(DemandTime = "daytime", StartStationId = 519, EndStationId = 519, StartPerCapitaIncome = 100,000, EndPerCapitaIncome = 90,000, StartPctHouseholdsNoVehicle = .65, TripDurationMinutes = 10, DistanceMiles = .865)
 
@@ -241,7 +241,7 @@ murray_predict10 <- data.frame(DemandTime = "evening", StartStationId = 519, End
 
 predict(citireg, newdata = murray_predict10)
 
-# Lincoln Square Predictions
+### Lincoln Square Predictions ###
 
 lincoln_predict1 <- data.frame(DemandTime = "daytime", StartStationId = 3164, EndStationId = 519, StartPerCapitaIncome = 100,000, EndPerCapitaIncome = 100,000, StartPctHouseholdsNoVehicle = .737, TripDurationMinutes = 10, DistanceMiles = .865)
 
@@ -283,7 +283,7 @@ lincoln_predict10 <- data.frame(DemandTime = "evening", StartStationId = 3164, E
 
 predict(citireg, newdata = lincoln_predict10)
 
-#Brooklyn Predictions
+### Brooklyn Predictions ###
 
 brook_predict1 <- data.frame(DemandTime = "daytime", StartStationId = 3423, EndStationId = 519, StartPerCapitaIncome = 65,000, EndPerCapitaIncome = 100,000, StartPctHouseholdsNoVehicle = .544, TripDurationMinutes = 10, DistanceMiles = .865)
 
@@ -325,7 +325,7 @@ brook_predict10 <- data.frame(DemandTime = "evening", StartStationId = 3423, End
 
 predict(citireg, newdata = brook_predict10)
 
-# East Village Predictions
+### East Village Predictions ###
 ev_predict1 <- data.frame(DemandTime = "daytime", StartStationId = 326, EndStationId = 519, StartPerCapitaIncome = 85,000, EndPerCapitaIncome = 100,000, StartPctHouseholdsNoVehicle = .79, TripDurationMinutes = 10, DistanceMiles = .865)
 
 predict(citireg, newdata = ev_predict1)
@@ -366,7 +366,7 @@ ev_predict10 <- data.frame(DemandTime = "evening", StartStationId = 326, EndStat
 
 predict(citireg, newdata = ev_predict10)
 
-# Lower East Side Predictions
+### Lower East Side Predictions ###
 les_predict1 <- data.frame(DemandTime = "daytime", StartStationId = 473, EndStationId = 519, StartPerCapitaIncome = 30,000, EndPerCapitaIncome = 100,000, StartPctHouseholdsNoVehicle = .817, TripDurationMinutes = 10, DistanceMiles = .865)
 
 predict(citireg, newdata = les_predict1)
